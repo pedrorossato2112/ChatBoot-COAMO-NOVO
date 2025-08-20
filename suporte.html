@@ -2,26 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suporte - Chat Coamo</title>
-  <link rel="stylesheet" href="login.css"> 
+  <title>Chat Suporte</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <div class="container suporte-container">
-    <div class="card suporte-card">
-      <h1>Suporte</h1>
-      <div class="chat-wrapper">
-        <div class="chamados-list">
-          <h3>Chamados</h3>
-          <ul id="listaChamados">
-          </ul>
-        </div>
+  <div class="suporte-container">
+    <h1>Chat Suporte</h1>
 
-        <div class="chat-box">
-          <h3>Chat</h3>
-          <div id="mensagens" class="mensagens">
-            <!-- Mensagens aparecerão aqui -->
-          </div>
+    <div class="chat-wrapper">
+      <!-- Lista de chamados -->
+      <div class="chamados-list">
+        <ul id="listaChamados"></ul>
+      </div>
+
+      <!-- Chat do cooperado selecionado -->
+      <div class="chat-box">
+        <div class="mensagens" id="mensagens"></div>
+
+        <div class="input-wrapper">
           <input type="text" id="novaMensagem" placeholder="Digite sua mensagem...">
           <button id="enviarMensagem">Enviar</button>
         </div>
