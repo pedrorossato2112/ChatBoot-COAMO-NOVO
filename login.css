@@ -11,9 +11,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
+/* ================= Login / Container ================= */
 .container {
   width: 360px;
 }
@@ -89,14 +90,12 @@ button:hover {
   text-align: center;
 }
 
-/* ================= Suporte ================= */
-
+/* ================= Suporte / Chat ================= */
 .suporte-container {
   width: 800px;
-}
-
-.suporte-card {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .chat-wrapper {
@@ -155,35 +154,55 @@ button:hover {
 }
 
 .mensagem.cooperado {
-  background-color: #16a34a; /* verde claro */
+  background-color: #16a34a;
   color: #fff;
   align-self: flex-start;
   border-bottom-left-radius: 0;
 }
 
 .mensagem.suporte {
-  background-color: #111827; /* verde escuro/preto */
+  background-color: #111827;
   color: #fff;
   align-self: flex-end;
   border-bottom-right-radius: 0;
 }
 
+/* ================= Input + Botão ================= */
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
 #novaMensagem {
-  flex: 0;
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #1f2937;
+  background: #0b1020;
+  color: #fff;
 }
 
 #enviarMensagem {
-  flex: 0;
+  padding: 8px 16px;
+  border-radius: 8px;
   background: #16a34a;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
+#enviarMensagem:hover {
+  background: #15803d;
+}
 
+/* ================= Botão Criar Chamado ================= */
 .btn-criar {
-  background-color: #16a34a; /* verde claro */
+  background-color: #16a34a;
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 6px 12px; /* menor ainda */
+  padding: 6px 12px;
   margin-bottom: 10px;
   cursor: pointer;
   font-weight: bold;
@@ -195,6 +214,3 @@ button:hover {
 .btn-criar:hover {
   background-color: #15803d;
 }
-
-}
-
