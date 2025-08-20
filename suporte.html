@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suporte - Chat Coamo</title>
+  <link rel="stylesheet" href="login.css"> 
+</head>
+<body>
+  <div class="container suporte-container">
+    <div class="card suporte-card">
+      <h1>Suporte</h1>
+      <div class="chat-wrapper">
+        <div class="chamados-list">
+          <h3>Chamados</h3>
+          <ul id="listaChamados">
+          </ul>
+        </div>
+
+        <div class="chat-box">
+          <h3>Chat</h3>
+          <div id="mensagens" class="mensagens">
+            <!-- Mensagens aparecerão aqui -->
+          </div>
+          <input type="text" id="novaMensagem" placeholder="Digite sua mensagem...">
+          <button id="enviarMensagem">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cooperado - Chat Coamo</title>
+  <link rel="stylesheet" href="login.css"> <!-- mesmo CSS do login -->
+</head>
+<body>
+  <div class="container suporte-container">
+    <div class="card suporte-card">
+      <h1>Cooperado</h1>
+      <div class="chat-wrapper">
+        <button id="criarChamado" class="btn-criar">Criar Chamado</button> <!-- botão criado -->
+
+        <div class="chat-box">
+          <h3>Chat com Suporte</h3>
+          <div id="mensagens" class="mensagens">
+            <!-- Mensagens aparecerão aqui -->
+          </div>
+          <input type="text" id="novaMensagem" placeholder="Digite sua mensagem...">
+          <button id="enviarMensagem">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="chatCooperado.js"></script>
+</body>
+</html>
