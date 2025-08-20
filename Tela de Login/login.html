@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login / Cadastro</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="auth-card">
+      <h1>Chat Coamo</h1>
+
+      <div class="tabs">
+        <button id="tab-login" class="active">Login</button>
+        <button id="tab-register">Cadastro</button>
+      </div>
+
+      <form id="login-form" class="form active">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Senha" required>
+        <button type="submit" id="loginBtn">Entrar</button>
+      </form>
+
+      <form id="register-form" class="form">
+        <input type="text" id="regName" placeholder="Nome" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPassword" placeholder="Senha" required>
+        <select id="regTipo" required>
+          <option value="cooperado">Cooperado</option>
+          <option value="suporte">Suporte</option>
+        </select>
+        <button type="submit" id="registerBtn">Cadastrar</button>
+      </form>
+
+      <p id="errorMessage"></p>
+    </div>
+  </div>
+
+  <script type="module" src="login.js"></script>
+</body>
+</html>
