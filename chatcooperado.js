@@ -1,8 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, doc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, setDoc, onSnapshot, query, orderBy, getDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-// Configuração Firebase (mesma do login.js)
+// Configuração Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyABNpGsF0ckrYw63ysUC6jYAT-YnWd0xYk",
   authDomain: "chatboot-novo.firebaseapp.com",
@@ -32,12 +32,25 @@ onAuthStateChanged(auth, async (user) => {
   }
 
   cooperadoUid = user.uid;
+  // Verifica se já existe chamado, senão cria um documento vazio
+  const chamadoDoc = await getDoc(doc(db, "chamados", cooperadoUid));
+  if (!chamadoDoc.exists()) {
+    await setDoc(doc(db, "chamados", cooperadoUid), {
+      nome: auth.currentUser.displayName || "Cooperado"
+    });
+  }
+
   carregarMensagens();
 });
 
-// Criar chamado
+// Criar chamado manualmente
 criarChamadoBtn.addEventListener("click", async () => {
   if (!cooperadoUid) return;
+
+  const chamadoRef = doc(db, "chamados", cooperadoUid);
+  await setDoc(chamadoRef, {
+    nome: auth.currentUser.displayName || "Cooperado"
+  });
 
   await addDoc(collection(db, "chamados", cooperadoUid, "mensagens"), {
     remetente: "Cooperado",
@@ -54,28 +67,21 @@ function carregarMensagens() {
   onSnapshot(q, (snapshot) => {
     mensagensDiv.innerHTML = "";
     snapshot.forEach(docSnap => {
-  const msg = docSnap.data();
-  const p = document.createElement("p");
-  p.textContent = msg.texto;
-  p.classList.add("mensagem");
-
-  if (msg.remetente === "Cooperado") {
-    p.classList.add("cooperado");
-  } else {
-    p.classList.add("suporte");
-  }
-
-  mensagensDiv.appendChild(p);
-  mensagensDiv.scrollTop = mensagensDiv.scrollHeight;
-});
-
+      const msg = docSnap.data();
+      const p = document.createElement("p");
+      p.textContent = msg.texto;
+      p.classList.add("mensagem");
+      p.classList.add(msg.remetente === "Cooperado" ? "cooperado" : "suporte");
+      mensagensDiv.appendChild(p);
+      mensagensDiv.scrollTop = mensagensDiv.scrollHeight;
+    });
   });
 }
 
-// Enviar mensagem do cooperado
+// Enviar mensagem
 enviarBtn.addEventListener("click", async () => {
   const texto = novaMensagemInput.value.trim();
-  if (!texto) return;
+  if (!texto || !cooperadoUid) return;
 
   await addDoc(collection(db, "chamados", cooperadoUid, "mensagens"), {
     remetente: "Cooperado",

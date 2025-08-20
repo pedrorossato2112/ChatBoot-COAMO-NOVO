@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebas
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, doc, getDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-// Configuração Firebase (mesma que login.js)
+// Configuração Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyABNpGsF0ckrYw63ysUC6jYAT-YnWd0xYk",
   authDomain: "chatboot-novo.firebaseapp.com",
@@ -40,21 +40,18 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// Carregar lista de cooperados que geraram chamados
+// Carregar lista de cooperados que possuem chamados
 async function carregarChamados() {
-  const usersRef = collection(db, "users");
-  const q = query(usersRef); // pega todos os usuários
-  onSnapshot(q, (snapshot) => {
+  const chamadosRef = collection(db, "chamados");
+  onSnapshot(chamadosRef, (snapshot) => {
     listaChamados.innerHTML = "";
     snapshot.forEach(docSnap => {
       const data = docSnap.data();
-      if (data.tipo === "cooperado") {
-        const li = document.createElement("li");
-        li.textContent = data.nome;
-        li.dataset.uid = docSnap.id;
-        li.addEventListener("click", () => abrirChat(docSnap.id, data.nome));
-        listaChamados.appendChild(li);
-      }
+      const li = document.createElement("li");
+      li.textContent = data.nome;
+      li.dataset.uid = docSnap.id;
+      li.addEventListener("click", () => abrirChat(docSnap.id, data.nome));
+      listaChamados.appendChild(li);
     });
   });
 }
@@ -63,25 +60,19 @@ async function carregarChamados() {
 function abrirChat(uid, nome) {
   cooperadoSelecionado = uid;
   mensagensDiv.innerHTML = "";
+
   const q = query(collection(db, "chamados", uid, "mensagens"), orderBy("timestamp"));
   onSnapshot(q, (snapshot) => {
     mensagensDiv.innerHTML = "";
     snapshot.forEach(docSnap => {
-  const msg = docSnap.data();
-  const p = document.createElement("p");
-  p.textContent = msg.texto;
-  p.classList.add("mensagem");
-
-  if (msg.remetente === "Cooperado") {
-    p.classList.add("cooperado");
-  } else {
-    p.classList.add("suporte");
-  }
-
-  mensagensDiv.appendChild(p);
-  mensagensDiv.scrollTop = mensagensDiv.scrollHeight;
-});
-
+      const msg = docSnap.data();
+      const p = document.createElement("p");
+      p.textContent = msg.texto;
+      p.classList.add("mensagem");
+      p.classList.add(msg.remetente === "Cooperado" ? "cooperado" : "suporte");
+      mensagensDiv.appendChild(p);
+      mensagensDiv.scrollTop = mensagensDiv.scrollHeight;
+    });
   });
 }
 

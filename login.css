@@ -88,6 +88,9 @@ button:hover {
   margin-top: 12px;
   text-align: center;
 }
+
+/* ================= Suporte ================= */
+
 .suporte-container {
   width: 800px;
 }
@@ -119,6 +122,11 @@ button:hover {
   padding: 8px;
   border-bottom: 1px solid #1f2937;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chamados-list li:hover {
+  background: #111827;
 }
 
 .chat-box {
@@ -154,7 +162,7 @@ button:hover {
 }
 
 .mensagem.suporte {
-  background-color: #111827; /* verde escuro ou preto */
+  background-color: #111827; /* verde escuro/preto */
   color: #fff;
   align-self: flex-end;
   border-bottom-right-radius: 0;
@@ -168,16 +176,20 @@ button:hover {
   flex: 0;
   background: #16a34a;
 }
+
+/* ================= Botão Criar Chamado ================= */
 .btn-criar {
   background-color: #16a34a; /* verde claro */
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
-  margin-bottom: 15px;
+  padding: 8px 16px; /* menor que antes */
+  margin-bottom: 10px; /* espaço mais curto */
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  font-size: 14px;
+  text-align: center;
 }
 
 .btn-criar:hover {
