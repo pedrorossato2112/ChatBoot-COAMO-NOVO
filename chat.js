@@ -40,8 +40,8 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// Carregar lista de cooperados que possuem chamados
-async function carregarChamados() {
+// Carregar lista de cooperados com chamados
+function carregarChamados() {
   const chamadosRef = collection(db, "chamados");
   onSnapshot(chamadosRef, (snapshot) => {
     listaChamados.innerHTML = "";
@@ -56,7 +56,7 @@ async function carregarChamados() {
   });
 }
 
-// Abrir chat de um cooperado
+// Abrir chat
 function abrirChat(uid, nome) {
   cooperadoSelecionado = uid;
   mensagensDiv.innerHTML = "";
