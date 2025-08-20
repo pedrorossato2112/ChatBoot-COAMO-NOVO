@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, doc, setDoc, onSnapshot, query, orderBy, getDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, setDoc, getDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 // Configuração Firebase
 const firebaseConfig = {
@@ -20,7 +20,6 @@ const db = getFirestore(app);
 const mensagensDiv = document.getElementById("mensagens");
 const novaMensagemInput = document.getElementById("novaMensagem");
 const enviarBtn = document.getElementById("enviarMensagem");
-const criarChamadoBtn = document.getElementById("criarChamado");
 
 let cooperadoUid = null;
 
@@ -32,34 +31,21 @@ onAuthStateChanged(auth, async (user) => {
   }
 
   cooperadoUid = user.uid;
-  // Verifica se já existe chamado, senão cria um documento vazio
-  const chamadoDoc = await getDoc(doc(db, "chamados", cooperadoUid));
-  if (!chamadoDoc.exists()) {
-    await setDoc(doc(db, "chamados", cooperadoUid), {
-      nome: auth.currentUser.displayName || "Cooperado"
-    });
-  }
-
   carregarMensagens();
 });
 
-// Criar chamado manualmente
-criarChamadoBtn.addEventListener("click", async () => {
-  if (!cooperadoUid) return;
-
+// Função para criar chamado automático
+async function criarChamadoSeNaoExistir() {
   const chamadoRef = doc(db, "chamados", cooperadoUid);
-  await setDoc(chamadoRef, {
-    nome: auth.currentUser.displayName || "Cooperado"
-  });
+  const chamadoDoc = await getDoc(chamadoRef);
 
-  await addDoc(collection(db, "chamados", cooperadoUid, "mensagens"), {
-    remetente: "Cooperado",
-    texto: "Novo chamado criado",
-    timestamp: new Date()
-  });
-
-  alert("Chamado criado com sucesso! Você já pode enviar mensagens.");
-});
+  if (!chamadoDoc.exists()) {
+    await setDoc(chamadoRef, {
+      nome: auth.currentUser.displayName || "Cooperado",
+      criadoEm: new Date()
+    });
+  }
+}
 
 // Carregar mensagens em tempo real
 function carregarMensagens() {
@@ -83,6 +69,10 @@ enviarBtn.addEventListener("click", async () => {
   const texto = novaMensagemInput.value.trim();
   if (!texto || !cooperadoUid) return;
 
+  // Cria o chamado automaticamente se não existir
+  await criarChamadoSeNaoExistir();
+
+  // Adiciona a mensagem
   await addDoc(collection(db, "chamados", cooperadoUid, "mensagens"), {
     remetente: "Cooperado",
     texto,
