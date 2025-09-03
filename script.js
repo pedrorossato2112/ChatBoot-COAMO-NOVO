@@ -10,3 +10,4 @@ toggle.addEventListener('click', () => {
   } else {
     toggle.src = 'lua.png'; 
   }
+});
