@@ -1,12 +1,12 @@
 const celular = document.getElementById('celular');
 const toggle = document.getElementById('toggleTheme');
+const solIcon = document.getElementById('solIcon');
 
 toggle.addEventListener('click', () => {
-  celular.classList.toggle('dark'); // alterna o tema
+  celular.classList.toggle('dark');
 
   if(celular.classList.contains('dark')){
-    toggle.src = 'imagens/brilho-do-sol.png'; // ícone sol no dark mode
+    toggle.src = 'imagens/brilho-do-sol.png'; 
   } else {
-    toggle.src = 'imagens/lua.png'; // ícone lua no modo claro
+    toggle.src = 'lua.png'; 
   }
-});
