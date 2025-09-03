@@ -8,6 +8,7 @@ toggle.addEventListener('click', () => {
   if(celular.classList.contains('dark')){
     toggle.src = 'imagens/brilho-do-sol.png'; 
   } else {
-    toggle.src = 'lua.png'; 
+    toggle.src = 'imagens/lua.png'; 
   }
 });
+
