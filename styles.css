@@ -43,13 +43,13 @@ body {
 }
 
 .sol {
-  position: absolute;
-  top: 35px;
-  right: 35px;
-  width: 25px;
-  height: 25px;
-  z-index: 1;
-}
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 110px;
+      height: auto;
+      z-index: 1;
+    }
 
 .lua {
   position: absolute;
@@ -180,3 +180,4 @@ body {
   left: -10px;
   top: 140px;
 }
+
