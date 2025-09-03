@@ -6,7 +6,7 @@ toggle.addEventListener('click', () => {
   celular.classList.toggle('dark');
 
   if(celular.classList.contains('dark')){
-    toggle.src = 'brilho-do-sol.png'; // ícone sol no dark mode
+    toggle.src = 'imagens/brilho-do-sol.png'; // ícone sol no dark mode
   } else {
     toggle.src = 'lua.png'; // volta para a lua no modo claro
   }
