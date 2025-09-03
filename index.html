@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login / Cadastro</title>
-  <link rel="stylesheet" href="login.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatBoot-Coamo</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <div class="card" id="auth-card">
-      <h1>Chat Coamo</h1>
+  <div class="celular" id="celular">
+    <div class="camera"></div>
+    <img class="onda" src="Sem_título-removebg-preview.png" alt="">
+    <img class="sol" src="SOL.png" alt="Sol" id="solIcon">
+    <img class="lua" src="lua.png" alt="Lua" id="toggleTheme">
 
-      <div class="tabs">
-        <button id="tab-login" class="active">Login</button>
-        <button id="tab-register">Cadastro</button>
+    <img class="logo" src="Logo APPLOG Verde Escuro.png" alt="Logo">
+
+    <div class="login-container">
+      <div class="input-group">
+        <img src="do-utilizador.png" alt="ícone usuário">
+        <input type="text" placeholder="Username">
       </div>
-
-      <form id="login-form" class="form active">
-        <input type="email" id="loginEmail" placeholder="Email" required>
-        <input type="password" id="loginPassword" placeholder="Senha" required>
-        <button type="submit" id="loginBtn">Entrar</button>
-      </form>
-
-      <form id="register-form" class="form">
-        <input type="text" id="regName" placeholder="Nome" required>
-        <input type="email" id="regEmail" placeholder="Email" required>
-        <input type="password" id="regPassword" placeholder="Senha" required>
-        <select id="regTipo" required>
-          <option value="cooperado">Cooperado</option>
-          <option value="suporte">Suporte</option>
-        </select>
-        <button type="submit" id="registerBtn">Cadastrar</button>
-      </form>
-
-      <p id="errorMessage"></p>
+      <div class="input-group">
+        <img src="cadeado-trancado.png" alt="ícone senha">
+        <input type="password" placeholder="Password">
+      </div>
+      <button class="login-btn">LOGIN</button>
     </div>
+
+    <div class="botao-home"></div>
+    <div class="botao-power"></div>
+    <div class="botao-volume"></div>
+    <div class="botao-silenciar"></div>
   </div>
 
-  <script type="module" src="login.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

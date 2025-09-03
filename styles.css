@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eaeaea;
+  font-family: Arial, sans-serif;
+}
+
+.celular {
+  width: 390px;
+  height: 780px;
+  background: white;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.dark {
+  background: #1a1a1a;
+}
+
+.onda {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.sol {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  width: 25px;
+  height: 25px;
+  z-index: 1;
+}
+
+.lua {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.3s;
+  top: 50px;
+  right: 50px;
+}
+
+.camera {
+  width: 120px;
+  height: 30px;
+  background: black;
+  border-radius: 15px;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 60px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.input-group {
+  position: relative;
+  width: 320px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 45px;
+  border: none;
+  border-radius: 25px;
+  background: #8fbf9f;
+  color: #000;
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 0.2s, background 0.3s, color 0.3s;
+}
+
+.dark .input-group input {
+  background: #7fcf9f;
+  color: #000;
+}
+
+.input-group input:focus {
+  box-shadow: 0 0 0 2px rgba(43, 122, 66, 0.5);
+}
+
+.input-group img {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.login-btn {
+  width: 150px;
+  padding: 10px 0;
+  border: none;
+  border-radius: 25px;
+  background: #2b7a42;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dark .login-btn {
+  background: #4caf50;
+}
+
+.botao-home {
+  width: 60px;
+  height: 60px;
+  border: 3px solid black;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.botao-power {
+  position: absolute;
+  width: 6px;
+  height: 60px;
+  background: #333;
+  border-radius: 3px;
+  right: -10px;
+  top: 200px;
+}
+
+.botao-volume {
+  position: absolute;
+  width: 6px;
+  height: 40px;
+  background: #333;
+  border-radius: 3px;
+  left: -10px;
+  top: 180px;
+}
+
+.botao-silenciar {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background: #333;
+  border-radius: 2px;
+  left: -10px;
+  top: 140px;
+}
